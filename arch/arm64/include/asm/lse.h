@@ -7,7 +7,8 @@
 #include <linux/compiler_types.h>
 #include <linux/export.h>
 
-#define __LSE_PREAMBLE	".arch armv8-a+lse\n"
+#define __LSE_PREAMBLE	".arch_extension lse\n"
+
 
 #include <linux/stringify.h>
 #include <asm/alternative.h>
