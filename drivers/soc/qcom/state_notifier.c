@@ -1,9 +1,13 @@
 /*
  * State Notifier Driver
  *
+<<<<<<< HEAD
  * Copyright (c) 2013-2017, Pranav Vashi <neobuddy89@gmail.com>
  *           (c) 2017, Joe Maples <joe@frap129.org>
  *           (c) 2018, Yaroslav Furman <yaro330@gmail.com>
+=======
+ * Copyright (c) 2013-2018, Pranav Vashi <neobuddy89@gmail.com>
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -15,13 +19,21 @@
 #include <linux/module.h>
 #include <linux/state_notifier.h>
 
+<<<<<<< HEAD
 #define DEFAULT_SUSPEND_DEFER_TIME 	1
+=======
+#define DEFAULT_SUSPEND_DEFER_TIME 	10
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 #define STATE_NOTIFIER			"state_notifier"
 
 /*
  * debug = 1 will print all
  */
 static unsigned int debug;
+<<<<<<< HEAD
+=======
+module_param_named(debug_mask, debug, uint, 0644);
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 
 #define dprintk(msg...)		\
 do {				\
@@ -29,12 +41,20 @@ do {				\
 		pr_info(msg);	\
 } while (0)
 
+<<<<<<< HEAD
+=======
+static bool enabled = true;
+module_param_named(enabled, enabled, bool, 0664);
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 static unsigned int suspend_defer_time = DEFAULT_SUSPEND_DEFER_TIME;
 module_param_named(suspend_defer_time, suspend_defer_time, uint, 0664);
 static struct delayed_work suspend_work;
 static struct workqueue_struct *susp_wq;
 struct work_struct resume_work;
+<<<<<<< HEAD
 struct work_struct boost_work;
+=======
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 bool state_suspended;
 module_param_named(state_suspended, state_suspended, bool, 0444);
 static bool suspend_in_progress;
@@ -88,6 +108,7 @@ static void _resume_work(struct work_struct *work)
 	dprintk("%s: resume completed.\n", STATE_NOTIFIER);
 }
 
+<<<<<<< HEAD
 static void _boost_work(struct work_struct *work)
 {
 	state_suspended = false;
@@ -98,6 +119,12 @@ void state_suspend(void)
 {
 	dprintk("%s: suspend called.\n", STATE_NOTIFIER);
 	if (state_suspended || suspend_in_progress)
+=======
+void state_suspend(void)
+{
+	dprintk("%s: suspend called.\n", STATE_NOTIFIER);
+	if (state_suspended || suspend_in_progress || !enabled)
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 		return;
 
 	suspend_in_progress = true;
@@ -117,6 +144,7 @@ void state_resume(void)
 		queue_work(susp_wq, &resume_work);
 }
 
+<<<<<<< HEAD
 void state_boost(void)
 {
 	if (delayed_work_pending(&suspend_work))
@@ -127,6 +155,8 @@ void state_boost(void)
 		queue_work(susp_wq, &boost_work);
 }
 
+=======
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 static int __init state_notifier_init(void)
 {
 	susp_wq =
@@ -138,7 +168,10 @@ static int __init state_notifier_init(void)
 
 	INIT_DELAYED_WORK(&suspend_work, _suspend_work);
 	INIT_WORK(&resume_work, _resume_work);
+<<<<<<< HEAD
 	INIT_WORK(&boost_work, _boost_work);
+=======
+>>>>>>> 6a083ac6cdde (soc/msm: Add state notifier driver)
 
 	return 0;
 }
