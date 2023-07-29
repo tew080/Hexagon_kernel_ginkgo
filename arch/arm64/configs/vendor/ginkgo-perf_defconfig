@@ -5899,3 +5899,12 @@ CONFIG_KPROBE_EVENT=n
 #######
 ## end of KernelSU + SuSFS 1.5.5
 #######
+
+#####
+## high performance booster in filesystem
+######
+CONFIG_FS_HPB=y
+######
+## end high performance booster in filesystem
+######
+

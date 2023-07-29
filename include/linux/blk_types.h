@@ -145,10 +145,8 @@ struct bio {
 #define BIO_QUIET	6	/* Make BIO Quiet */
 #define BIO_CHAIN	7	/* chained bio, ->bi_remaining in effect */
 #define BIO_REFFED	8	/* bio has elevated ->bi_cnt */
-#define BIO_THROTTLED	9	/* This bio has already been subjected to
-				 * throttling rules. Don't do it again. */
-#define BIO_TRACE_COMPLETION 10	/* bio_endio() should trace the final completion
-				 * of this bio. */
+#define BIO_THROTTLED	9	/* This bio has already been subjected to* throttling rules. Don't do it again. */
+#define BIO_TRACE_COMPLETION 10	/* bio_endio() should trace the final completion* of this bio. */
 /* See BVEC_POOL_OFFSET below before adding new flags */
 
 /*
@@ -257,6 +255,7 @@ enum req_flag_bits {
 	 * SCSI "quiesce" state must be ignored.
 	 */
 	__REQ_PREEMPT,
+	__REQ_HPB_PREFER,	/* HPB Flag */
 	__REQ_NR_BITS,		/* stops here */
 };
 
@@ -279,7 +278,7 @@ enum req_flag_bits {
 #define REQ_NOUNMAP		(1ULL << __REQ_NOUNMAP)
 #define REQ_NOWAIT		(1ULL << __REQ_NOWAIT)
 #define REQ_PREEMPT		(1ULL << __REQ_PREEMPT)
-
+#define REQ_HPB_PREFER          (1ULL << __REQ_HPB_PREFER)
 #define REQ_FAILFAST_MASK \
 	(REQ_FAILFAST_DEV | REQ_FAILFAST_TRANSPORT | REQ_FAILFAST_DRIVER)
 
