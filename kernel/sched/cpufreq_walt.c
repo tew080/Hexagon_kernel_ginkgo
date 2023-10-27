@@ -271,9 +271,18 @@ static void waltgov_fast_switch(struct waltgov_policy *wg_policy, u64 time,
 			      unsigned int next_freq)
 {
 	struct cpufreq_policy *policy = wg_policy->policy;
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0) && LINUX_VERSION_CODE > KERNEL_VERSION(5, 4, 0))
+	int cpu;
+#endif
 
 	waltgov_track_cycles(wg_policy, wg_policy->policy->cur, time);
 	cpufreq_driver_fast_switch(policy, next_freq);
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0) && LINUX_VERSION_CODE > KERNEL_VERSION(5, 4, 0))
+	if (trace_cpu_frequency_enabled()) {
+		for_each_cpu(cpu, policy->cpus)
+			trace_cpu_frequency(next_freq, cpu);
+	}
+#endif
 }
 
 static void waltgov_deferred_update(struct waltgov_policy *wg_policy, u64 time,
@@ -403,7 +412,11 @@ unsigned long walt_cpu_util(int cpu, unsigned long util_cfs,
 	unsigned long dl_util, util, irq;
 	struct rq *rq = cpu_rq(cpu);
 
+#if LINUX_VERSION_CODE > KERNEL_VERSION(5, 4, 0)
+	if (!uclamp_is_used() && sched_feat(SUGOV_RT_MAX_FREQ) &&
+#else
 	if (sched_feat(SUGOV_RT_MAX_FREQ) && !IS_BUILTIN(CONFIG_UCLAMP_TASK) &&
+#endif
 	    type == FREQUENCY_UTIL && rt_rq_is_runnable(&rq->rt)) {
 		return max;
 	}
@@ -678,6 +691,10 @@ static void waltgov_update_single(struct update_util_data *hook, u64 time,
 	unsigned long util, max, hs_util, boost_util;
 	unsigned int next_f, j;
 	bool busy;
+#ifdef CONFIG_SCHED_WALT
+	unsigned long nl = wg_cpu->walt_load.nl;
+	unsigned long cpu_util = wg_cpu->util;
+#endif
 	int boost = wg_policy->tunables->boost;
 
 	if (!wg_policy->tunables->pl && flags & SCHED_CPUFREQ_PL)
@@ -713,19 +730,7 @@ static void waltgov_update_single(struct update_util_data *hook, u64 time,
 			   wg_policy->policy->cur);
 
 #ifdef CONFIG_SCHED_WALT
-	for_each_cpu(j, policy->cpus) {
-		struct waltgov_cpu *j_wg_cpu = &per_cpu(waltgov_cpu, j);
-		unsigned long j_util, j_nl;
-
-		j_util = j_wg_cpu->util;
-		j_nl = j_wg_cpu->walt_load.nl;
-		if (boost) {
-			j_util = mult_frac(j_util, boost + 100, 100);
-			j_nl = mult_frac(j_nl, boost + 100, 100);
-		}
-
-		waltgov_walt_adjust(wg_cpu, j_util, j_nl, &util, &max);
-	}
+	waltgov_walt_adjust(wg_cpu, cpu_util, nl, &util, &max);
 #endif
 	next_f = get_next_freq(wg_policy, util, max, wg_cpu, time);
 	/*
