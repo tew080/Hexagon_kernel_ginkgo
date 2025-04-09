@@ -171,7 +171,7 @@
 	modem-lte-sub6-pa1 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_PA)>;
 		wake-capable-sensor;
@@ -187,7 +187,7 @@
 	modem-lte-sub6-pa2 {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_PA_1)>;
 		wake-capable-sensor;
@@ -203,7 +203,7 @@
 	modem-beamer-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_QTM_THERM)>;
 		wake-capable-sensor;
@@ -219,7 +219,7 @@
 	modem-wifi-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SYS_THERM_1)>;
 		wake-capable-sensor;
@@ -235,7 +235,7 @@
 	modem-ambient-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SYS_THERM_2)>;
 		wake-capable-sensor;
@@ -251,7 +251,7 @@
 	modem-bcl-warn-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_BCL_WARN)>;
 		wake-capable-sensor;
@@ -267,7 +267,7 @@
 	modem-tsens-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MODEM_TSENS)>;
 		wake-capable-sensor;
@@ -283,7 +283,7 @@
 	modem-tsens1-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MODEM_TSENS_1)>;
 		wake-capable-sensor;
@@ -299,7 +299,7 @@
 	modem-sdr0-pa0-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR0_PA0)>;
 		wake-capable-sensor;
@@ -315,7 +315,7 @@
 	modem-sdr0-pa1-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR0_PA1)>;
 		wake-capable-sensor;
@@ -331,7 +331,7 @@
 	modem-sdr0-pa2-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR0_PA2)>;
 		wake-capable-sensor;
@@ -347,7 +347,7 @@
 	modem-sdr0-pa3-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR0_PA3)>;
 		wake-capable-sensor;
@@ -363,7 +363,7 @@
 	modem-sdr0-pa4-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR0_PA4)>;
 		wake-capable-sensor;
@@ -379,7 +379,7 @@
 	modem-sdr0-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR0)>;
 		wake-capable-sensor;
@@ -395,7 +395,7 @@
 	modem-sdr1-pa0-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1_PA0)>;
 		wake-capable-sensor;
@@ -411,7 +411,7 @@
 	modem-sdr1-pa1-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1_PA1)>;
 		wake-capable-sensor;
@@ -427,7 +427,7 @@
 	modem-sdr1-pa2-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1_PA2)>;
 		wake-capable-sensor;
@@ -443,7 +443,7 @@
 	modem-sdr1-pa3-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1_PA3)>;
 		wake-capable-sensor;
@@ -459,7 +459,7 @@
 	modem-sdr1-pa4-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1_PA4)>;
 		wake-capable-sensor;
@@ -475,7 +475,7 @@
 	modem-sdr1-pa5-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1_PA5)>;
 		wake-capable-sensor;
@@ -491,7 +491,7 @@
 	modem-sdr1-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_SDR1)>;
 		wake-capable-sensor;
@@ -507,7 +507,7 @@
 	modem-mmw0-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MMW0)>;
 		wake-capable-sensor;
@@ -523,7 +523,7 @@
 	modem-mmw1-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MMW1)>;
 		wake-capable-sensor;
@@ -539,7 +539,7 @@
 	modem-mmw2-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MMW2)>;
 		wake-capable-sensor;
@@ -555,7 +555,7 @@
 	modem-mmw3-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MMW3)>;
 		wake-capable-sensor;
@@ -571,7 +571,7 @@
 	modem-mmw-ific0-usr {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&qmi_sensor
 				(QMI_MODEM_NR_INST_ID+QMI_MMW_IFIC0)>;
 		wake-capable-sensor;

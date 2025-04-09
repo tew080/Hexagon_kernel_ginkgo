@@ -664,7 +664,7 @@
 	rf-pa0-therm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6125_adc_tm ADC_AMUX_THM1_PU2>;
 		trips {
 			active-config0 {
@@ -678,7 +678,7 @@
 	quiet-therm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6125_adc_tm ADC_AMUX_THM2_PU2>;
 		trips {
 			active-config0 {
@@ -692,7 +692,7 @@
 	xo-therm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6125_adc_tm ADC_XO_THERM_PU2>;
 		trips {
 			active-config0 {
@@ -706,7 +706,7 @@
 	conn-therm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pmi632_adc_tm ADC_GPIO1_PU2>;
 		trips {
 			active-config0 {
@@ -720,7 +720,7 @@
 	skin-therm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <0>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pmi632_adc_tm ADC_GPIO2_PU2>;
 		trips {
 			active-config0 {
@@ -734,21 +734,21 @@
 	emmc-ufs-therm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <5000>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6125_adc_tm_iio ADC_GPIO1_PU2>;
 	};
 
 	backlight_therm {
 		polling-delay-passive = <0>;
 		polling-delay = <5000>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6125_adc_tm_iio ADC_GPIO4_PU2>;
 	};
 
 	camera-ftherm-adc {
 		polling-delay-passive = <0>;
 		polling-delay = <5000>;
-		thermal-governor = "user_space";
+		thermal-governor = "step_wise";
 		thermal-sensors = <&pm6125_adc_tm_iio ADC_GPIO3_PU2>;
 	};
 
