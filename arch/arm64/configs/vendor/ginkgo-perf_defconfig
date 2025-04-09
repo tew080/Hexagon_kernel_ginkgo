@@ -5861,3 +5861,13 @@ CONFIG_CRYPTO_LZ4KD=y
 ## end  LZ4KD compression algorithm
 ######
 
+######
+## SBalance IRQ balancer
+######
+CONFIG_IRQ_SBALANCE=y
+CONFIG_IRQ_SBALANCE_POLL_MSEC=500
+CONFIG_IRQ_SBALANCE_THRESH=1024
+CONFIG_SBALANCE_EXCLUDE_CPUS=3,6,7
+######
+## end of  SBalance IRQ balancer
+######
