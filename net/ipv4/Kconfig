@@ -678,7 +678,7 @@ config TCP_CONG_BBR
 
 config TCP_CONG_BBR2
 	tristate "BBR2 TCP"
-	default y
+	default n
 	---help---
 
 	BBR2 TCP congestion control is a model-based congestion control
