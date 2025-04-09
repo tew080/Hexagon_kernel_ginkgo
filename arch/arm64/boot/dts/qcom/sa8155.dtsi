@@ -523,7 +523,7 @@
 				     &hs1_i2s_ws_sleep &hs1_i2s_data0_sleep
 				     &hs1_i2s_data1_sleep>;
 			iommus = <&apps_smmu 0x1B5C 0x0>;
-			qcom,smmu-s1-bypass;
+	
 			qcom,iova-mapping = <0x0 0xFFFFFFFF>;
 		};
 
@@ -538,7 +538,7 @@
 				     &hs2_i2s_ws_sleep &hs2_i2s_data0_sleep
 				     &hs2_i2s_data1_sleep>;
 			iommus = <&apps_smmu 0x1B5D 0x0>;
-			qcom,smmu-s1-bypass;
+	
 			qcom,iova-mapping = <0x0 0xFFFFFFFF>;
 		};
 
@@ -553,7 +553,7 @@
 				     &hs3_i2s_ws_sleep &hs3_i2s_data0_sleep
 				     &hs3_i2s_data1_sleep>;
 			iommus = <&apps_smmu 0x1B5E 0x0>;
-			qcom,smmu-s1-bypass;
+	
 			qcom,iova-mapping = <0x0 0xFFFFFFFF>;
 		};
 	};

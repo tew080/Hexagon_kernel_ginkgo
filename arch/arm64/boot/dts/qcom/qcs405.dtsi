@@ -118,11 +118,7 @@
 			size = <0 0x800000>;
 		};
 
-		dump_mem: mem_dump_region {
-			compatible = "shared-dma-pool";
-			reusable;
-			size = <0 0x400000>;
-		};
+
 		/* global autoconfigured region for contiguous allocations */
 		linux,cma {
 			compatible = "shared-dma-pool";
@@ -1655,7 +1651,7 @@
 		vdd-1.8-xo-supply = <&pms405_l5>;
 		vdd-1.3-rfa-supply = <&pms405_l1>;
 		qcom,vdd-cx-mx-config = <1224000 1224000>;
-		qcom,smmu-s1-bypass;
+
 		qcom,hyp_disabled;
 	};
 

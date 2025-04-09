@@ -185,7 +185,7 @@
 		qcom,no-status-check-on-disable;
 		qcom,gds-timeout = <500>;
 		qcom,clk-dis-wait-val = <8>;
-		status = "disabled";
+		status = "ok";
 	};
 
 	gpu_gx_gdsc: qcom,gdsc@509100c {

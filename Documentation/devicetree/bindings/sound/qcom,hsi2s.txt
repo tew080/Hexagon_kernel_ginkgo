@@ -66,7 +66,7 @@ hsi2s: qcom,hsi2s {
 		clocks = <&clock_gcc GCC_SDR_PRI_MI2S_CLK>;
 		clock-names = "pri_mi2s_clk";
 		iommus = <&apps_smmu 0x035C 0x0>;
-		qcom,smmu-s1-bypass;
+
 		qcom,iova-mapping = <0x0 0xFFFFFFFF>;
 	};
 
@@ -81,7 +81,7 @@ hsi2s: qcom,hsi2s {
 		clocks = <&clock_gcc GCC_SDR_SEC_MI2S_CLK>;
 		clock-names = "sec_mi2s_clk";
 		iommus = <&apps_smmu 0x035D 0x0>;
-		qcom,smmu-s1-bypass;
+
 		qcom,iova-mapping = <0x0 0xFFFFFFFF>;
 	};
 };
