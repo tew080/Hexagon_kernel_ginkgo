@@ -31,6 +31,9 @@ do {				\
 		pr_info(msg);	\
 } while (0)
 
+
+static bool enabled = true;
+
 module_param_named(enabled, enabled, bool, 0664);
 
 static unsigned int suspend_defer_time = DEFAULT_SUSPEND_DEFER_TIME;
@@ -108,7 +111,7 @@ void state_suspend(void)
 void state_suspend(void)
 {
 	dprintk("%s: suspend called.\n", STATE_NOTIFIER);
-	if (state_suspended || suspend_in_progress)
+	if (state_suspended || suspend_in_progress || !enabled)
 
 		return;
 
