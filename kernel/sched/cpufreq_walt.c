@@ -17,6 +17,7 @@
 #include <trace/events/power.h>
 #include <linux/sched/sysctl.h>
 #include <linux/version.h>
+#include <linux/energy_model.h>
 #if (LINUX_VERSION_CODE > KERNEL_VERSION(5, 4, 0) && LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0))
 #include <trace/hooks/sched.h>
 #endif
