@@ -12,7 +12,6 @@
 
 SECONDS=0 # builtin bash timer
 ZIPNAME="Hexagon-Ginkgo-OC-$(TZ=Asia/Jakarta date +"%Y%m%d-%H%M").zip"
-#CLANG_DIR="/usr/bin/clang"
 CLANG_DIR="/home/tew/kernel/Clang-21.0.0"
 GCC_64_DIR="/home/tew/kernel/Clang-21.0.0/bin"
 GCC_32_DIR="/home/tew/kernel/Clang-21.0.0/bin"

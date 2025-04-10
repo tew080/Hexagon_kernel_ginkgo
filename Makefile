@@ -706,22 +706,18 @@ ARCH_CFLAGS :=
 include arch/$(SRCARCH)/Makefile
 
 # Polly optimization
-ifdef CONFIG_LLVM_POLLY
+ifdef CONFIG_POLLY_CLANG
 KBUILD_CFLAGS	+= -mllvm -polly \
-		   -mllvm -polly-run-inliner \
 		   -mllvm -polly-ast-use-context \
-		   -mllvm -polly-detect-keep-going \
 		   -mllvm -polly-invariant-load-hoisting \
+		   -mllvm -polly-run-inliner \
 		   -mllvm -polly-vectorizer=stripmine
-
 ifeq ($(shell test $(CONFIG_CLANG_VERSION) -gt 130000; echo $$?),0)
 KBUILD_CFLAGS	+= -mllvm -polly-loopfusion-greedy=1 \
 		   -mllvm -polly-reschedule=1 \
-		   -mllvm -polly-postopts=1 \
-		   -mllvm -polly-num-threads=0 \
-		   -mllvm -polly-omp-backend=LLVM \
-		   -mllvm -polly-scheduling=dynamic \
-		   -mllvm -polly-scheduling-chunksize=1
+		   -mllvm -polly-postopts=1
+else
+KBUILD_CFLAGS	+= -mllvm -polly-opt-fusion=max
 endif
 endif
 
@@ -744,15 +740,15 @@ KBUILD_CFLAGS   += -Os
 endif
 
 # Increase the speed of mathematical calculations
-KBUILD_CFLAGS += -O3 -ffp-contract=fast 
-KBUILD_AFLAGS += -O3 -ffp-contract=fast 
-KBUILD_CFLAGS  +=  -fno-rtti
-KBUILD_CFLAGS  +=  -fno-trapping-math
-KBUILD_CFLAGS  +=  -fno-exceptions
-KBUILD_CFLAGS  +=  -fno-math-errno
+KBUILD_CFLAGS += -O3 -ffp-contract=fast -ffast-math
+KBUILD_AFLAGS += -O3 -ffp-contract=fast -ffast-math
+#KBUILD_CFLAGS  +=  -fno-rtti
+#KBUILD_CFLAGS  +=  -fno-trapping-math
+#KBUILD_CFLAGS  +=  -fno-exceptions
+#KBUILD_CFLAGS  +=  -fno-math-errno
 
 # Snapdragon optimization
-KBUILD_CFLAGS  +=  -march=armv8-a+crypto+rcpc+dotprod+fp+aes+sha2+lse+simd
+KBUILD_CFLAGS  +=  -march=armv8-a+crypto+rcpc+dotprod+fp
 KBUILD_CFLAGS  +=  -mcpu=cortex-a73 -mtune=cortex-a73
 
 ifdef CONFIG_CC_WERROR
@@ -835,7 +831,7 @@ ifeq ($(ld-name),lld)
 LDFLAGS += --lto-O3
 else
 LDFLAGS += -O3
-KBUILD_LDFLAGS += -O3
+KBUILD_LDFLAGS += -O3 --plugin-opt=O3
 endif
 
 KBUILD_CFLAGS += $(call cc-disable-warning, unused-const-variable)
@@ -913,15 +909,12 @@ endif
 
 ifdef CONFIG_LTO_CLANG
 ifdef CONFIG_THINLTO
-lto-clang-flags := -flto=thin -fsplit-lto-unit
-LDFLAGS	+= --thinlto-cache-dir=.thinlto-cache
+lto-clang-flags := -flto=full -fsplit-lto-unit -funified-lto
+LDFLAGS	+= --thinlto-jobs=$(nproc --all)
 else
 lto-clang-flags := -flto
 endif
 lto-clang-flags += -fvisibility=hidden
-
-# Limit inlining across translation units to reduce binary size
-LD_FLAGS_LTO_CLANG := -mllvm -import-instr-limit=5
 
 KBUILD_LDFLAGS += $(LD_FLAGS_LTO_CLANG)
 KBUILD_LDFLAGS_MODULE += $(LD_FLAGS_LTO_CLANG)
