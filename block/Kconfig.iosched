@@ -5,12 +5,12 @@ menu "IO Schedulers"
 
 config IOSCHED_NOOP
 	bool
-	default y
+	default n
 
 
 config IOSCHED_DEADLINE
 	tristate "Deadline I/O scheduler"
-	default y
+	default n
 	---help---
 	  The deadline I/O scheduler is simple and compact. It will provide
 	  CSCAN service with FIFO expiration of requests, switching to
@@ -19,7 +19,7 @@ config IOSCHED_DEADLINE
 
 config IOSCHED_CFQ
 	tristate "CFQ I/O scheduler"
-	default y
+	default n
 	---help---
 	  The CFQ I/O scheduler tries to distribute bandwidth equally
 	  among all processes in the system. It should provide a fair
@@ -73,13 +73,13 @@ config DEFAULT_IOSCHED
 
 config MQ_IOSCHED_DEADLINE
 	tristate "MQ deadline I/O scheduler"
-	default y
+	default n
 	---help---
 	  MQ version of the deadline IO scheduler.
 
 config MQ_IOSCHED_KYBER
 	tristate "Kyber I/O scheduler"
-	default y
+	default n
 	---help---
 	  The Kyber I/O scheduler is a low-overhead scheduler suitable for
 	  multiqueue and other fast devices. Given target latencies for reads and
