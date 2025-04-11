@@ -399,9 +399,9 @@ static unsigned long waltgov_get_util(struct waltgov_cpu *sg_cpu)
 #endif
 
 #define NL_RATIO 75
-#define DEFAULT_HISPEED_LOAD 90
+#define DEFAULT_HISPEED_LOAD 85
 #define DEFAULT_CPU0_RTG_BOOST_FREQ 1000000
-#define DEFAULT_CPU4_RTG_BOOST_FREQ 768000
+#define DEFAULT_CPU4_RTG_BOOST_FREQ 0
 static int find_target_boost(unsigned long util, struct waltgov_policy *wg_policy,
 				unsigned long *min_util)
 {
@@ -733,6 +733,9 @@ static ssize_t up_rate_limit_us_store(struct gov_attr_set *attr_set,
 	struct waltgov_policy *wg_policy;
 	unsigned int rate_limit_us;
 
+	if (task_is_booster(current))
+		return count;
+
 	if (kstrtouint(buf, 10, &rate_limit_us))
 		return -EINVAL;
 
@@ -752,6 +755,9 @@ static ssize_t down_rate_limit_us_store(struct gov_attr_set *attr_set,
 	struct waltgov_tunables *tunables = to_waltgov_tunables(attr_set);
 	struct waltgov_policy *wg_policy;
 	unsigned int rate_limit_us;
+
+	if (task_is_booster(current))
+		return count;
 
 	if (kstrtouint(buf, 10, &rate_limit_us))
 		return -EINVAL;
@@ -1260,6 +1266,8 @@ static int waltgov_init(struct cpufreq_policy *policy)
 		goto stop_kthread;
 	}
 
+	tunables->up_rate_limit_us = 500;
+	tunables->down_rate_limit_us = 2000;
 	gov_attr_set_init(&tunables->attr_set, &wg_policy->tunables_hook);
 	tunables->hispeed_load = DEFAULT_HISPEED_LOAD;
 	spin_lock_init(&tunables->target_loads_lock);

@@ -60,10 +60,15 @@ MODULE_PARM_DESC(swfdetect, "Enable soft fault detection");
 
 #define KGSL_LOG_LEVEL_DEFAULT 0
 
+#if 0
 /* Define GPU frequency values (in MHz) */
 static const unsigned long adreno_supported_freqs[] = {
     320, 465, 600, 745, 820, 900, 1100  // Frequency values for the GPU
 };
+
+static unsigned int counter_delta(struct kgsl_device *device,
+	unsigned int reg, unsigned int *counter);
+#endif
 
 static struct devfreq_msm_adreno_tz_data adreno_tz_data = {
 	.bus = {
@@ -1002,7 +1007,7 @@ static int adreno_of_get_power(struct adreno_device *adreno_dev,
 	//if (of_property_read_u32(node, "qcom,idle-timeout", &timeout))
 	//	timeout = 64;
 
-	device->pwrctrl.interval_timeout = msecs_to_jiffies(timeout);
+	//device->pwrctrl.interval_timeout = msecs_to_jiffies(timeout);
 
 	device->pwrctrl.bus_control = of_property_read_bool(node,
 		"qcom,bus-control");
@@ -1586,8 +1591,6 @@ static int adreno_init(struct kgsl_device *device)
 		}
 
 	}
-
-	device->pwrscale.devfreqptr->max_freq = 1100000000;
 	
 	return 0;
 }
