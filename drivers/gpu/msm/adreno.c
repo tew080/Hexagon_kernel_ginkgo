@@ -60,8 +60,10 @@ MODULE_PARM_DESC(swfdetect, "Enable soft fault detection");
 
 #define KGSL_LOG_LEVEL_DEFAULT 0
 
-static unsigned int counter_delta(struct kgsl_device *device,
-	unsigned int reg, unsigned int *counter);
+/* Define GPU frequency values (in MHz) */
+static const unsigned long adreno_supported_freqs[] = {
+    320, 465, 600, 745, 820, 900, 1100  // Frequency values for the GPU
+};
 
 static struct devfreq_msm_adreno_tz_data adreno_tz_data = {
 	.bus = {
@@ -990,15 +992,15 @@ static int adreno_of_get_power(struct adreno_device *adreno_dev,
 	/* get pm-qos-active-latency, set it to default if not found */
 	if (of_property_read_u32(node, "qcom,pm-qos-active-latency",
 		&device->pwrctrl.pm_qos_active_latency))
-		device->pwrctrl.pm_qos_active_latency = 1000;
+		device->pwrctrl.pm_qos_active_latency = 40;
 
 	/* get pm-qos-wakeup-latency, set it to default if not found */
 	if (of_property_read_u32(node, "qcom,pm-qos-wakeup-latency",
 		&device->pwrctrl.pm_qos_wakeup_latency))
-		device->pwrctrl.pm_qos_wakeup_latency = 100;
+		device->pwrctrl.pm_qos_wakeup_latency = 40;
 
-	if (of_property_read_u32(node, "qcom,idle-timeout", &timeout))
-		timeout = 64;
+	//if (of_property_read_u32(node, "qcom,idle-timeout", &timeout))
+	//	timeout = 64;
 
 	device->pwrctrl.interval_timeout = msecs_to_jiffies(timeout);
 
